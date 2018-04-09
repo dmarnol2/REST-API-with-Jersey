@@ -1,0 +1,7 @@
+{
+  "name": "dmarnol2_Lab 3 for SER 422",
+  "version": "0.1.0",
+  "description": "Phone Number management using REST principles with Jersey and API Documentation",
+  "title": "Phone Book",
+  "url" : "http://localhost:8080/lab3_dmarnol2/rest/"
+}

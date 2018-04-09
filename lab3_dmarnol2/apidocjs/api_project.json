@@ -1,0 +1,16 @@
+{
+  "name": "dmarnol2_Lab 3 for SER 422",
+  "version": "0.1.0",
+  "description": "Phone Number management using REST principles with Jersey and API Documentation",
+  "title": "Phone Book",
+  "url": "http://localhost:8080/lab3_dmarnol2/rest/",
+  "sampleUrl": false,
+  "defaultVersion": "0.0.0",
+  "apidoc": "0.3.0",
+  "generator": {
+    "name": "apidoc",
+    "time": "2018-04-08T05:23:25.529Z",
+    "url": "http://apidocjs.com",
+    "version": "0.17.6"
+  }
+}

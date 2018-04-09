@@ -1,0 +1,63 @@
+<project name="Lab3 Rest API" default="deploy">
+
+  <property file="build.properties" />
+
+  <path id="classpath">
+		<fileset dir="./">
+			<include name="${srclib}/*.jar" />
+		</fileset>
+  </path>
+
+   <!-- <target name="apidoc">
+  <mkdir dir="${apidoc}"/>
+    <exec dir="." executable="cmd" osfamily="windows">
+      <arg line=" /c apidoc -i ./${src} -o ./${apidoc}"/>
+    </exec>-->
+   <!-- 
+    <exec dir="." executable="apidoc" osfamily="unix">
+      <arg line=" -i ./${src.dir} -o ./${apidoc.dir}"/>
+    </exec>
+    
+    <exec dir="." executable="apidoc" osfamily="mac">
+      <arg line=" -i ./${src.dir} -o ./${apidoc.dir}"/>
+    </exec>
+
+  </target>-->
+
+  <target name="compile">
+    <mkdir dir="${destdir}/WEB-INF/classes"/>
+    <mkdir dir="${destdir}/WEB-INF/lib/"/>
+    <copy todir="${destdir}/WEB-INF/lib">
+      <fileset dir="${srclib}"/>
+    </copy>
+    <javac classpathref="classpath" srcdir="src" destdir="${destdir}/WEB-INF/classes/" />
+  </target>
+
+  <target name="build" depends="compile">
+    <copy file="web.xml" todir="${destdir}/WEB-INF"/>
+  	<copy todir="${destdir}/${apidocdir}">
+  		<fileset dir="${apidocdir}"/>
+  	</copy>
+    <war destfile="${warfile}" basedir="${destdir}" needxmlfile="false"/>
+  </target>
+
+  <target name="deploy" depends="build">
+    <copy file="${warfile}" todir="${tomcat_webapps}" />
+  </target>
+
+
+  <target name="submit" depends="clean">
+    <jar destfile="${submit.jar}" basedir="." excludes="bin/**,${srclib}/**,classes/**,build/**">
+    </jar>
+  </target>
+
+  <target name="clean">
+    <delete file="${warfile}" />
+  	<delete file="${submit.jar}" />
+    <delete dir="${destdir}"/>
+  </target>
+
+  <target name="undeploy">
+    <delete file="${tomcat_webapps}/${warfile}" />
+  </target>
+</project>
